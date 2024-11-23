@@ -12,7 +12,7 @@ final class SingleMovieInitial extends SingleMovieState {}
 final class SingleMovieLoading extends SingleMovieState {}
 
 class SingleMovieLoaded extends SingleMovieState {
-  final SingleMovieEntity movie;
+  final SingleMovieModel movie;
 
   SingleMovieLoaded(this.movie);
 }

@@ -11,4 +11,6 @@ abstract class LangKeys {
   static const kurdish = 'fa';
   static const arbic = 'ar';
   static const settings = 'settings';
+  static const description = 'description';
+  static const productionCompanies = 'production_companies';
 }

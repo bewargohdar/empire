@@ -28,4 +28,14 @@ class MovieRepositoryImpl extends MovieRepository {
   Future<SingleMovieModel> getMovieDetails(int id) async {
     return movieRemoteDataSource.getMovieDetails(id);
   }
+
+  @override
+  Future<MovieModel> getTrendingMovies() {
+    return movieRemoteDataSource.getTrendingMovies();
+  }
+
+  @override
+  Future<MovieModel> getSearchMovies(String query) {
+    return movieRemoteDataSource.getSearchMovies(query);
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/entity/single_movie.dart';
+import '../../../data/models/single_movie.dart';
 import '../../../domain/usecase/get_single_movie.dart';
 
 part 'single_movie_event.dart';
@@ -21,7 +21,7 @@ class SingleMovieBloc extends Bloc<SingleMovieEvent, SingleMovieState> {
     try {
       final movies = await getSingleMovie(params: event.id);
 
-      emit(SingleMovieLoaded(movies as SingleMovieEntity));
+      emit(SingleMovieLoaded(movies));
     } catch (e) {
       emit(SingleMovieError('Failed to fetch now playing movies'));
     }

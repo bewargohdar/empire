@@ -1,122 +1,120 @@
 import 'package:equatable/equatable.dart';
 
 class SingleMovieEntity extends Equatable {
-  final bool adult;
-  final String backdropPath;
-  final dynamic belongsToCollection;
-  final int budget;
-  final List<Genre> genres;
-  final String homepage;
-  final int id;
-  final String imdbId;
-  final List<String> originCountry;
-  final String originalLanguage;
-  final String originalTitle;
-  final String overview;
-  final double popularity;
-  final String posterPath;
-  final List<ProductionCompany> productionCompanies;
-  final List<ProductionCountry> productionCountries;
-  final DateTime releaseDate;
-  final int revenue;
-  final int runtime;
-  final List<SpokenLanguage> spokenLanguages;
-  final String status;
-  final String tagline;
-  final String title;
-  final bool video;
-  final double voteAverage;
-  final int voteCount;
+  final bool? adult;
+  final String? backdropPath;
+  final int? budget;
+  final List<Genres>? genres;
+  final String? homepage;
+  final int? id;
+  final String? imdbId;
+  final String? originalLanguage;
+  final String? originalTitle;
+  final String? overview;
+  final double? popularity;
+  final String? posterPath;
+  final List<ProductionCompanies>? productionCompanies;
+  final List<ProductionCountry>? productionCountries;
+  final String? releaseDate;
+  final int? revenue;
+  final int? runtime;
+  final List<SpokenLanguage>? spokenLanguages;
+  final String? status;
+  final String? tagline;
+  final String? title;
+  final bool? video;
+  final double? voteAverage;
+  final int? voteCount;
+  final bool? isFavorite;
 
-  SingleMovieEntity({
-    required this.adult,
-    required this.backdropPath,
-    required this.belongsToCollection,
-    required this.budget,
-    required this.genres,
-    required this.homepage,
-    required this.id,
-    required this.imdbId,
-    required this.originCountry,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.productionCompanies,
-    required this.productionCountries,
-    required this.releaseDate,
-    required this.revenue,
-    required this.runtime,
-    required this.spokenLanguages,
-    required this.status,
-    required this.tagline,
-    required this.title,
-    required this.video,
-    required this.voteAverage,
-    required this.voteCount,
-  });
+  SingleMovieEntity(
+      {this.adult,
+      this.backdropPath,
+      this.budget,
+      this.genres,
+      this.isFavorite,
+      this.homepage,
+      this.id,
+      this.imdbId,
+      this.originalLanguage,
+      this.originalTitle,
+      this.overview,
+      this.popularity,
+      this.posterPath,
+      this.productionCompanies,
+      this.productionCountries,
+      this.releaseDate,
+      this.revenue,
+      this.runtime,
+      this.spokenLanguages,
+      this.status,
+      this.tagline,
+      this.title,
+      this.video,
+      this.voteAverage,
+      this.voteCount});
 
   @override
   List<Object?> get props => [
-        id,
-        title,
+        adult,
         backdropPath,
-        overview,
-        releaseDate,
-        voteAverage,
-        voteCount,
+        budget,
+        genres,
+        homepage,
+        id,
+        imdbId,
         originalLanguage,
         originalTitle,
+        overview,
+        popularity,
         posterPath,
-        tagline,
-        status,
-        runtime,
-        budget,
-        revenue,
-        homepage,
-        imdbId,
         productionCompanies,
         productionCountries,
+        releaseDate,
+        revenue,
+        runtime,
         spokenLanguages,
-        genres,
+        status,
+        tagline,
+        title,
+        video,
+        voteAverage,
+        voteCount,
+        isFavorite
       ];
 }
 
-class Genre {
+class Genres extends Equatable {
   final int id;
   final String name;
 
-  Genre({
+  Genres({
     required this.id,
     required this.name,
   });
 
-  Genre.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'];
+  @override
+  List<Object?> get props => [id, name];
 }
 
-class ProductionCompany {
+class ProductionCompanies extends Equatable {
   final int id;
   final String logoPath;
   final String name;
   final String originCountry;
 
-  ProductionCompany({
+  ProductionCompanies({
     required this.id,
     required this.logoPath,
     required this.name,
     required this.originCountry,
   });
-  ProductionCompany.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        logoPath = json['logo_path'],
-        name = json['name'],
-        originCountry = json['origin_country'];
+
+  @override
+  List<Object?> get props => [id, logoPath, name, originCountry];
 }
 
-class ProductionCountry {
+class ProductionCountry extends Equatable {
   final String iso31661;
   final String name;
 
@@ -124,12 +122,12 @@ class ProductionCountry {
     required this.iso31661,
     required this.name,
   });
-  ProductionCountry.fromJson(Map<String, dynamic> json)
-      : iso31661 = json['iso_3166_1'],
-        name = json['name'];
+
+  @override
+  List<Object?> get props => [iso31661, name];
 }
 
-class SpokenLanguage {
+class SpokenLanguage extends Equatable {
   final String englishName;
   final String iso6391;
   final String name;
@@ -139,8 +137,6 @@ class SpokenLanguage {
     required this.iso6391,
     required this.name,
   });
-  SpokenLanguage.fromJson(Map<String, dynamic> json)
-      : englishName = json['english_name'],
-        iso6391 = json['iso_639_1'],
-        name = json['name'];
+  @override
+  List<Object?> get props => [englishName, iso6391, name];
 }

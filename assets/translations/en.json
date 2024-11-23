@@ -7,6 +7,9 @@
 	"en": "English",
 	"fa": "Kurdish",
 	"language": "Language",
-	"settings": "Settings"
+	"settings": "Settings",
+	"description": "Description",
+	"production_companies": "Production Companies"
+	
 
 }

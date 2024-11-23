@@ -6,8 +6,9 @@ import '../../models/single_movie.dart';
 const String apiKey = '7d1f7566dfd0681a04138c8cd65dd90c';
 const String baseUrl = 'https://api.themoviedb.org/3/movie/now_playing';
 const String upComingUrl = 'https://api.themoviedb.org/3/movie/upcoming';
-const String popularUrl = 'https://api.themoviedb.org/3/movie/top_rated';
+const String popularUrl = 'https://api.themoviedb.org/3/movie/popular';
 const String detailsUrl = 'https://api.themoviedb.org/3/movie/';
+const String tradingUrl = 'https://api.themoviedb.org/3/trending/movie/day';
 
 class MovieRemoteDataSource {
   Future<MovieModel> getNowPlayingMovies() async {
@@ -23,8 +24,9 @@ class MovieRemoteDataSource {
   }
 
   Future<MovieModel> getPopularMovies() async {
-    final uri = Uri.parse('$popularUrl?api_key=$apiKey');
+    final uri = Uri.parse('$tradingUrl?api_key=$apiKey');
     final response = await http.get(uri);
+
     return _parseMovies(response);
   }
 
@@ -47,4 +49,23 @@ class MovieRemoteDataSource {
       throw Exception('Failed to load data: ${response.statusCode}');
     }
   }
+
+  Future<MovieModel> getTrendingMovies() async {
+    final uri = Uri.parse('$tradingUrl?api_key=$apiKey');
+    final response = await http.get(uri);
+    return _parseMovies(response);
+  }
+
+  Future<MovieModel> getSearchMovies(String query) async {
+    final uri = Uri.parse(
+        'https://api.themoviedb.org/3/search/movie?api_key=$apiKey&query=$query');
+    final response = await http.get(uri);
+    return _parseMovies(response);
+  }
+}
+
+void main() async {
+  final movieRemoteDataSource = MovieRemoteDataSource();
+  final movies = await movieRemoteDataSource.getMovieDetails(1100782);
+  print(movies.id);
 }
