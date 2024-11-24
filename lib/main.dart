@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/movie/movie_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/single_movie/single_movie_bloc.dart';
-import 'package:empaire_film/features/movie/presentation/page/home.dart';
 import 'package:empaire_film/features/movie/presentation/tabs_page.dart';
 import 'package:empaire_film/server_injection.dart';
 import 'package:flutter/material.dart';
@@ -46,10 +45,9 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        initialRoute: '/',
         debugShowCheckedModeBanner: false,
         title: 'Empaire Film',
-        home: const HomeScreen(),
+        home: const TabsPage(),
       ),
     );
   }

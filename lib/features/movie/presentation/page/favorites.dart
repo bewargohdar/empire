@@ -98,7 +98,7 @@ class FavoriteCard extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Hero(
-                  tag: data.id ?? "movie_image_tag",
+                  tag: 'favorite-movie-${data.id}',
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: CachedNetworkImage(
