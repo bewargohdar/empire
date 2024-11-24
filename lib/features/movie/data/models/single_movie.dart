@@ -1,3 +1,5 @@
+import 'package:empaire_film/features/movie/domain/entity/movie.dart';
+
 class SingleMovieModel {
   bool? adult;
   String? backdropPath;
@@ -152,5 +154,12 @@ class SpokenLanguages {
     englishName = json['english_name'];
     iso6391 = json['iso_639_1'];
     name = json['name'];
+  }
+}
+
+extension SingleMovieExt on SingleMovieModel {
+  MovieData castToMovieData() {
+    return MovieData(
+        id: id, title: title, overview: overview, posterPath: posterPath);
   }
 }

@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:empaire_film/features/movie/domain/entity/movie.dart';
+import 'package:empaire_film/features/movie/presentation/widget/movie/tag_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'dart:ui' as ui;
 
-import '../bloc/bloc/single_movie_bloc.dart';
-import '../page/movie_detail.dart';
+import '../../bloc/single_movie/single_movie_bloc.dart';
+import '../../page/movie_detail.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({super.key, required this.data, this.isEven = false});
@@ -64,10 +65,10 @@ class MovieCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Iconsax.star1,
                           size: 12,
-                          color: Theme.of(context).hintColor,
+                          color: Color(0xffFFC319),
                         ),
                         const SizedBox(
                           width: 4,
@@ -96,26 +97,18 @@ class MovieCard extends StatelessWidget {
                       spacing: 10,
                       runSpacing: 5,
                       children: [
-                        Chip(
-                          label: Text(
-                            data.releaseDate ?? '',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              color: Theme.of(context).hintColor,
-                            ),
-                          ),
+                        TagCard(
+                          text: data.releaseDate ?? '',
+                          icon: Iconsax.calendar_25,
                         ),
-                        Chip(
-                          label: Text(
-                            data.originalLanguage ?? '',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              color: Theme.of(context).hintColor,
-                            ),
-                          ),
+                        TagCard(
+                          text: (data.popularity ?? '').toString(),
+                          icon: Iconsax.people5,
                         ),
+                        TagCard(
+                          text: (data.originalLanguage ?? '').toString(),
+                          icon: Iconsax.language_circle5,
+                        )
                       ],
                     )
                   ],

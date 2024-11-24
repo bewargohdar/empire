@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class MovieEntity extends Equatable {
@@ -14,6 +15,20 @@ class MovieEntity extends Equatable {
 
   @override
   List<Object?> get props => [page, results, totalPages, totalResults];
+
+  MovieEntity copyWith({
+    int? page,
+    List<MovieData>? results,
+    int? totalPages,
+    int? totalResults,
+  }) {
+    return MovieEntity(
+      page: page ?? this.page,
+      results: results ?? this.results,
+      totalPages: totalPages ?? this.totalPages,
+      totalResults: totalResults ?? this.totalResults,
+    );
+  }
 }
 
 class MovieData {
@@ -81,6 +96,40 @@ class MovieData {
       title: map['title'],
       overview: map['overview'],
       posterPath: map['image'],
+    );
+  }
+
+  MovieData copyWith({
+    bool? adult,
+    String? backdropPath,
+    List<int>? genreIds,
+    int? id,
+    String? originalLanguage,
+    String? originalTitle,
+    String? overview,
+    double? popularity,
+    String? posterPath,
+    String? releaseDate,
+    String? title,
+    bool? video,
+    double? voteAverage,
+    int? voteCount,
+  }) {
+    return MovieData(
+      adult: adult ?? this.adult,
+      backdropPath: backdropPath ?? this.backdropPath,
+      genreIds: genreIds ?? this.genreIds,
+      id: id ?? this.id,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      originalTitle: originalTitle ?? this.originalTitle,
+      overview: overview ?? this.overview,
+      popularity: popularity ?? this.popularity,
+      posterPath: posterPath ?? this.posterPath,
+      releaseDate: releaseDate ?? this.releaseDate,
+      title: title ?? this.title,
+      video: video ?? this.video,
+      voteAverage: voteAverage ?? this.voteAverage,
+      voteCount: voteCount ?? this.voteCount,
     );
   }
 }

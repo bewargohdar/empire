@@ -2,16 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:empaire_film/features/movie/data/models/single_movie.dart';
 import 'package:empaire_film/features/movie/domain/entity/movie.dart';
-import 'package:empaire_film/features/movie/presentation/widget/app_bar.dart';
-import 'package:empaire_film/features/movie/presentation/widget/stretchable_app_bar.dart';
-import 'package:empaire_film/features/movie/presentation/widget/tag_card.dart';
+import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite_bloc.dart';
+import 'package:empaire_film/features/movie/presentation/widget/app_bar/stretchable_app_bar.dart';
+import 'package:empaire_film/features/movie/presentation/widget/movie/tag_card.dart';
 import 'package:empaire_film/utils/constant/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'dart:ui' as ui;
 
-import '../bloc/bloc/single_movie_bloc.dart';
+import '../bloc/single_movie/single_movie_bloc.dart';
 
 class MovieDetailScreen extends StatelessWidget {
   final MovieData movie;
@@ -30,6 +30,9 @@ class MovieDetailScreen extends StatelessWidget {
             child: BlocBuilder<SingleMovieBloc, SingleMovieState>(
               builder: (context, state) {
                 if (state is SingleMovieInitial) {
+                  context
+                      .read<SingleMovieBloc>()
+                      .add(FetchSingleMovie(movie.id!));
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is SingleMovieLoaded) {
                   final movie = state.movie;
@@ -63,6 +66,7 @@ class DetailBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Movie Title
           Row(
             children: [
               Expanded(
@@ -71,11 +75,45 @@ class DetailBody extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
+              // Favorite Button
+              BlocSelector<FavoriteBloc, FavoriteState, List<MovieData>>(
+                selector: (state) {
+                  if (state is FavoriteLoaded) {
+                    return state.movies;
+                  }
+                  return [];
+                },
+                builder: (context, favoriteMovies) {
+                  bool isFavorite = favoriteMovies
+                      .any((movieData) => movieData.id == data.id);
+
+                  return IconButton(
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite ? Colors.red : Colors.grey,
+                    ),
+                    onPressed: () {
+                      if (isFavorite) {
+                        // Remove from favorites
+                        context
+                            .read<FavoriteBloc>()
+                            .add(DeleteFavoriteMovie(data.castToMovieData()));
+                      } else {
+                        // Add to favorites
+                        context.read<FavoriteBloc>().add(InsertFavoriteEvent(
+                              data.castToMovieData(),
+                            ));
+                      }
+                    },
+                  );
+                },
+              ),
             ],
           ),
           const SizedBox(
             height: 8,
           ),
+          // Rating and other information...
           Row(
             children: [
               const Icon(
@@ -99,6 +137,7 @@ class DetailBody extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
+          // Movie Tags...
           Wrap(
             spacing: 12,
             runSpacing: 12,
@@ -110,6 +149,7 @@ class DetailBody extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
+          // Movie Description...
           Text(
             LangKeys.description.tr(),
             style: Theme.of(context).textTheme.bodyLarge,
@@ -128,6 +168,7 @@ class DetailBody extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
+          // Production Companies...
           Text(
             LangKeys.productionCompanies.tr(),
             style: Theme.of(context).textTheme.bodyLarge,
@@ -158,7 +199,7 @@ class DetailBody extends StatelessWidget {
                     )
                   : const SizedBox();
             }),
-          )
+          ),
         ],
       ),
     );

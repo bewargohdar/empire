@@ -44,6 +44,8 @@ dependencies:
   easy_localization: ^3.0.7
   iconsax: ^0.0.8
   cached_network_image: ^3.3.0
+  sqflite: ^2.0.0
+  path: ^1.8.3
   
 
 dev_dependencies:

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:empaire_film/features/movie/presentation/bloc/bloc/movie_bloc.dart';
-import 'package:empaire_film/features/movie/presentation/bloc/bloc/single_movie_bloc.dart';
+import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite_bloc.dart';
+import 'package:empaire_film/features/movie/presentation/bloc/movie/movie_bloc.dart';
+import 'package:empaire_film/features/movie/presentation/bloc/single_movie/single_movie_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/page/home.dart';
 import 'package:empaire_film/server_injection.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<SingleMovieBloc>(),
         ),
+        BlocProvider(create: (context) => sl<FavoriteBloc>()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

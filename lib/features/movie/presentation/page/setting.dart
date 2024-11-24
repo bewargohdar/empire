@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:empaire_film/features/movie/data/models/language.dart';
-import 'package:empaire_film/features/movie/presentation/page/home.dart';
+
+import 'package:empaire_film/features/movie/presentation/widget/app_bar/app_bar.dart';
 import 'package:empaire_film/utils/constant/lang_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -12,26 +13,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () => Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (route) => true),
-            icon: const Icon(Icons.arrow_back_ios)),
-        title: Text(
-          LangKeys.settings.tr(),
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
+      appBar: genralAppBar(context, LangKeys.settings.tr()),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
         child: Column(
@@ -42,7 +24,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             Text(
               LangKeys.language.tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.normal,
                 color: Colors.black,
@@ -96,7 +78,7 @@ class LanguageTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       splashColor: Colors.transparent,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 4.5),
         width: double.infinity,
