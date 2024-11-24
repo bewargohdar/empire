@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<SingleMovieBloc>(),
         ),
-        BlocProvider(create: (context) => sl<FavoriteBloc>()),
+        BlocProvider(
+            create: (context) => sl<FavoriteBloc>()..add(GetFavoriteMovies())),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

@@ -163,3 +163,16 @@ extension SingleMovieExt on SingleMovieModel {
         id: id, title: title, overview: overview, posterPath: posterPath);
   }
 }
+extension ListExt on List {
+  bool findById(int id) {
+    if (isNotEmpty) {
+      try {
+        return firstWhere((element) => element.id == id) != -1;
+      } catch (e) {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+}

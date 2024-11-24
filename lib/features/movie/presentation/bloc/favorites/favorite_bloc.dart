@@ -14,6 +14,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   GetFavoriateMovie getFavoriteMovies;
   AddFavoriteMovie addFavoriteMovie;
   RemoveFavoriteMovie removeFavoriteMovie;
+
   FavoriteBloc(
     this.getFavoriteMovies,
     this.addFavoriteMovie,
@@ -29,6 +30,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     emit(FavoriteLoading());
     try {
       final movies = await getFavoriteMovies();
+      print('Loaded favorites: ${movies.map((m) => m.id).toList()}');
       emit(FavoriteLoaded(movies));
     } catch (e) {
       emit(FavoriteError('Failed to fetch favorite movies'));
@@ -39,7 +41,9 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       InsertFavoriteEvent event, Emitter<FavoriteState> emit) async {
     try {
       await addFavoriteMovie(params: event.movie);
-      emit(AddFavoriteSuccess());
+      // After adding, reload the favorites list
+      final updatedMovies = await getFavoriteMovies();
+      emit(FavoriteLoaded(updatedMovies));
     } catch (e) {
       emit(AddFavoriteFailed());
     }
@@ -49,7 +53,9 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       DeleteFavoriteMovie event, Emitter<FavoriteState> emit) async {
     try {
       await removeFavoriteMovie(params: event.movie);
-      emit(RemoveFavoriteSuccess());
+      // After removing, reload the favorites list
+      final updatedMovies = await getFavoriteMovies();
+      emit(FavoriteLoaded(updatedMovies));
     } catch (e) {
       emit(RemoveFavoriteFailed());
     }

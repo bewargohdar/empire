@@ -94,15 +94,13 @@ class DetailBody extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (isFavorite) {
-                        // Remove from favorites
                         context
                             .read<FavoriteBloc>()
                             .add(DeleteFavoriteMovie(data.castToMovieData()));
                       } else {
-                        // Add to favorites
-                        context.read<FavoriteBloc>().add(InsertFavoriteEvent(
-                              data.castToMovieData(),
-                            ));
+                        context
+                            .read<FavoriteBloc>()
+                            .add(InsertFavoriteEvent(data.castToMovieData()));
                       }
                     },
                   );
