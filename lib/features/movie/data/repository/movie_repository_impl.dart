@@ -13,33 +13,13 @@ class MovieRepositoryImpl extends MovieRepository {
   MovieRepositoryImpl(this.movieRemoteDataSource, this.movieLocalDataSource);
 
   @override
-  Future<MovieModel> getNowPlayingMovies() {
-    return movieRemoteDataSource.getNowPlayingMovies();
-  }
-
-  @override
   Future<MovieModel> getPopularMovies() {
     return movieRemoteDataSource.getPopularMovies();
   }
 
   @override
-  Future<MovieModel> getUpComingMovies() {
-    return movieRemoteDataSource.getUpComingMovies();
-  }
-
-  @override
   Future<SingleMovieModel> getMovieDetails(int id) async {
     return movieRemoteDataSource.getMovieDetails(id);
-  }
-
-  @override
-  Future<MovieModel> getTrendingMovies() {
-    return movieRemoteDataSource.getTrendingMovies();
-  }
-
-  @override
-  Future<MovieModel> getSearchMovies(String query) {
-    return movieRemoteDataSource.getSearchMovies(query);
   }
 
   @override

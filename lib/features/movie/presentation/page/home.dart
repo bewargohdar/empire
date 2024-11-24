@@ -1,7 +1,9 @@
 import 'package:empaire_film/features/movie/presentation/bloc/movie/movie_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/widget/app_bar/app_bar.dart';
+
 import 'package:empaire_film/features/movie/presentation/widget/movie/movie_card.dart';
 import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // Listen to locale changes and rebuild when they occur.
     final locale = context.locale;
 
     return Scaffold(
@@ -49,11 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           if (state is MovieError) {
             return Center(
-              child: Text(
-                  state.message.tr()), // Ensure error message is localized.
+              child: Text(state.message.tr()),
             );
           }
-          return const SizedBox();
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );

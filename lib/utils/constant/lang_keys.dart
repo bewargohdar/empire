@@ -13,4 +13,6 @@ abstract class LangKeys {
   static const settings = 'settings';
   static const description = 'description';
   static const productionCompanies = 'production_companies';
+  static const favorites = 'favorites';
+  static const movies = 'movies';
 }

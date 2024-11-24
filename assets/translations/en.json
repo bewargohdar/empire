@@ -9,7 +9,9 @@
 	"language": "Language",
 	"settings": "Settings",
 	"description": "Description",
-	"production_companies": "Production Companies"
+	"production_companies": "Production Companies",
+	"favorites": "Favorite",
+	"movies": "Movies"
 	
 
 }

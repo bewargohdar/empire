@@ -4,12 +4,8 @@ import 'package:empaire_film/features/movie/domain/entity/movie.dart';
 import '../../data/models/single_movie.dart';
 
 abstract class MovieRepository {
-  Future<MovieModel> getNowPlayingMovies();
-  Future<MovieModel> getUpComingMovies();
   Future<MovieModel> getPopularMovies();
   Future<SingleMovieModel> getMovieDetails(int id);
-  Future<MovieModel> getTrendingMovies();
-  Future<MovieModel> getSearchMovies(String query);
   //add favorite movie functions
   Future<bool> addMovieToFavorites(MovieData movie);
   Future<bool> removeMovieFromFavorites(MovieData movie);

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:empaire_film/features/movie/data/models/single_movie.dart';
 import 'package:empaire_film/features/movie/domain/entity/movie.dart';
+import 'package:empaire_film/features/movie/domain/entity/single_movie.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/widget/app_bar/stretchable_app_bar.dart';
 import 'package:empaire_film/features/movie/presentation/widget/movie/tag_card.dart';
@@ -30,15 +31,12 @@ class MovieDetailScreen extends StatelessWidget {
             child: BlocBuilder<SingleMovieBloc, SingleMovieState>(
               builder: (context, state) {
                 if (state is SingleMovieInitial) {
-                  context
-                      .read<SingleMovieBloc>()
-                      .add(FetchSingleMovie(movie.id!));
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is SingleMovieLoaded) {
                   final movie = state.movie;
                   return DetailBody(data: movie);
                 } else if (state is SingleMovieLoading) {
-                  return Center(child: Text(state.toString()));
+                  return const SizedBox();
                 } else {
                   return const Center(child: Text('Something went wrong!'));
                 }
@@ -57,7 +55,7 @@ class DetailBody extends StatelessWidget {
     required this.data,
   });
 
-  final SingleMovieModel data;
+  final SingleMovieEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +139,7 @@ class DetailBody extends StatelessWidget {
             runSpacing: 12,
             children: List.generate(
               data.genres?.length ?? 0,
-              (index) => TagCard(text: data.genres![index].name ?? ''),
+              (index) => TagCard(text: data.genres![index].name),
             ),
           ),
           const SizedBox(
@@ -177,25 +175,23 @@ class DetailBody extends StatelessWidget {
           Wrap(
             children:
                 List.generate(data.productionCountries?.length ?? 0, (index) {
-              ProductionCompanies company = data.productionCompanies![index];
-              return company.logoPath != null
-                  ? Container(
-                      height: 100,
-                      width: 100,
-                      margin: const EdgeInsets.symmetric(horizontal: 6),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            width: 2, color: const Color(0xffDBE3FF)),
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://image.tmdb.org/t/p/w500${company.logoPath ?? ''}',
-                        errorWidget: (context, url, error) => const SizedBox(),
-                      ),
-                    )
-                  : const SizedBox();
+              ProductionCompanies company =
+                  data.productionCompanies![index] as ProductionCompanies;
+              return Container(
+                height: 100,
+                width: 100,
+                margin: const EdgeInsets.symmetric(horizontal: 6),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(width: 2, color: const Color(0xffDBE3FF)),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      'https://image.tmdb.org/t/p/w500${company.logoPath}',
+                  errorWidget: (context, url, error) => const SizedBox(),
+                ),
+              );
             }),
           ),
         ],

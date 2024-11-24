@@ -39,7 +39,7 @@ class MovieCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://image.tmdb.org/t/p/w500${data.posterPath}',
+                        'https://image.tmdb.org/t/p/w500${data.posterPath ?? ''}',
                     height: double.infinity,
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) => const SizedBox(),

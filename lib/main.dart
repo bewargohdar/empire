@@ -3,6 +3,7 @@ import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite
 import 'package:empaire_film/features/movie/presentation/bloc/movie/movie_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/single_movie/single_movie_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/page/home.dart';
+import 'package:empaire_film/features/movie/presentation/tabs_page.dart';
 import 'package:empaire_film/server_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,12 +39,14 @@ class MyApp extends StatelessWidget {
           create: (context) => sl<SingleMovieBloc>(),
         ),
         BlocProvider(
-            create: (context) => sl<FavoriteBloc>()..add(GetFavoriteMovies())),
+          create: (context) => sl<FavoriteBloc>()..add(GetFavoriteMovies()),
+        ),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
+        initialRoute: '/',
         debugShowCheckedModeBanner: false,
         title: 'Empaire Film',
         home: const HomeScreen(),

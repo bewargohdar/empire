@@ -10,9 +10,7 @@ import 'package:get_it/get_it.dart';
 
 import 'features/movie/domain/usecase/add_favorite_movie.dart';
 import 'features/movie/domain/usecase/get_favorite_movie.dart';
-import 'features/movie/domain/usecase/get_now_playing.dart';
 import 'features/movie/domain/usecase/get_single_movie.dart';
-import 'features/movie/domain/usecase/get_up_comming.dart';
 import 'features/movie/domain/usecase/remove_favorite_movie.dart';
 import 'features/movie/presentation/bloc/single_movie/single_movie_bloc.dart';
 
@@ -22,8 +20,6 @@ void init() {
   // Bloc
   sl.registerFactory(
     () => MovieBloc(
-      getNowPlaying: sl(),
-      getUpComming: sl(),
       getPopular: sl(),
     ),
   );
@@ -31,8 +27,7 @@ void init() {
   sl.registerFactory(() => FavoriteBloc(sl(), sl(), sl()));
 
   // Use cases
-  sl.registerLazySingleton(() => GetNowPlaying(sl()));
-  sl.registerLazySingleton(() => GetUpComming(sl()));
+
   sl.registerLazySingleton(() => GetPopular(sl()));
   sl.registerLazySingleton(() => GetSingleMovie(sl()));
   sl.registerLazySingleton(() => GetFavoriateMovie(sl()));

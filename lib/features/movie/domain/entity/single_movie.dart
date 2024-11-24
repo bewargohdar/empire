@@ -4,7 +4,7 @@ class SingleMovieEntity extends Equatable {
   final bool? adult;
   final String? backdropPath;
   final int? budget;
-  final List<Genres>? genres;
+  final List<GenresEntity>? genres;
   final String? homepage;
   final int? id;
   final String? imdbId;
@@ -13,12 +13,12 @@ class SingleMovieEntity extends Equatable {
   final String? overview;
   final double? popularity;
   final String? posterPath;
-  final List<ProductionCompanies>? productionCompanies;
-  final List<ProductionCountry>? productionCountries;
+  final List<ProductionCompaniesEntity>? productionCompanies;
+  final List<ProductionCountryEntity>? productionCountries;
   final String? releaseDate;
   final int? revenue;
   final int? runtime;
-  final List<SpokenLanguage>? spokenLanguages;
+  final List<SpokenLanguageEntity>? spokenLanguages;
   final String? status;
   final String? tagline;
   final String? title;
@@ -84,11 +84,11 @@ class SingleMovieEntity extends Equatable {
       ];
 }
 
-class Genres extends Equatable {
+class GenresEntity extends Equatable {
   final int id;
   final String name;
 
-  Genres({
+  GenresEntity({
     required this.id,
     required this.name,
   });
@@ -97,13 +97,13 @@ class Genres extends Equatable {
   List<Object?> get props => [id, name];
 }
 
-class ProductionCompanies extends Equatable {
+class ProductionCompaniesEntity extends Equatable {
   final int id;
   final String logoPath;
   final String name;
   final String originCountry;
 
-  ProductionCompanies({
+  ProductionCompaniesEntity({
     required this.id,
     required this.logoPath,
     required this.name,
@@ -114,11 +114,11 @@ class ProductionCompanies extends Equatable {
   List<Object?> get props => [id, logoPath, name, originCountry];
 }
 
-class ProductionCountry extends Equatable {
+class ProductionCountryEntity extends Equatable {
   final String iso31661;
   final String name;
 
-  ProductionCountry({
+  ProductionCountryEntity({
     required this.iso31661,
     required this.name,
   });
@@ -127,12 +127,12 @@ class ProductionCountry extends Equatable {
   List<Object?> get props => [iso31661, name];
 }
 
-class SpokenLanguage extends Equatable {
+class SpokenLanguageEntity extends Equatable {
   final String englishName;
   final String iso6391;
   final String name;
 
-  SpokenLanguage({
+  SpokenLanguageEntity({
     required this.englishName,
     required this.iso6391,
     required this.name,
