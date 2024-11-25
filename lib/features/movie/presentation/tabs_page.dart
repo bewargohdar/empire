@@ -45,21 +45,31 @@ class _TabsPageState extends State<TabsPage> {
             (i) => BottomNavigationBarItem(
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 6),
-                child: Icon(navIcons[i]),
+                child: Icon(
+                  navIcons[i],
+                ),
               ),
               label: navTitles[i].tr(),
               activeIcon: Padding(
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Icon(
                   navIcons[i],
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context)
+                      .elevatedButtonTheme
+                      .style!
+                      .foregroundColor
+                      ?.resolve({WidgetState.selected}),
                 ),
               ),
             ),
           ),
           currentIndex: currentTab,
           onTap: (index) => setState(() => currentTab = index),
-          selectedItemColor: Theme.of(context).primaryColor,
+          selectedItemColor: Theme.of(context)
+              .elevatedButtonTheme
+              .style!
+              .foregroundColor
+              ?.resolve({WidgetState.selected}),
           unselectedItemColor: Colors.grey,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),

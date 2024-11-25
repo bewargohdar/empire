@@ -8,7 +8,10 @@ AppBar mainAppBar(BuildContext context) {
   return AppBar(
     title: Row(
       children: [
-        Text(LangKeys.appName.tr()),
+        Text(
+          LangKeys.appName.tr(),
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ],
     ),
     actions: [

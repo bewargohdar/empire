@@ -60,7 +60,11 @@ class MovieCard extends StatelessWidget {
                   children: [
                     Text(
                       data.title ?? "",
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).hintColor,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                     Row(

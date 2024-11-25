@@ -70,7 +70,10 @@ class DetailBody extends StatelessWidget {
               Expanded(
                 child: Text(
                   data.title ?? "",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).hintColor,
+                      ),
                 ),
               ),
               // Favorite Button
@@ -148,7 +151,10 @@ class DetailBody extends StatelessWidget {
           // Movie Description...
           Text(
             LangKeys.description.tr(),
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.normal,
+                  color: Theme.of(context).hintColor,
+                ),
           ),
           const SizedBox(
             height: 8,
@@ -167,7 +173,10 @@ class DetailBody extends StatelessWidget {
           // Production Companies...
           Text(
             LangKeys.productionCompanies.tr(),
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.normal,
+                  color: Theme.of(context).hintColor,
+                ),
           ),
           const SizedBox(
             height: 8,
@@ -189,6 +198,7 @@ class DetailBody extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl:
                       'https://image.tmdb.org/t/p/w500${company.logoPath}',
+                  color: Theme.of(context).colorScheme.secondary,
                   errorWidget: (context, url, error) => const SizedBox(),
                 ),
               );

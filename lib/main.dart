@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:empaire_film/config/theme/dart_theme.dart';
+import 'package:empaire_film/config/theme/light_theme.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/movie/movie_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/single_movie/single_movie_bloc.dart';
@@ -7,8 +9,6 @@ import 'package:empaire_film/server_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-var KColorSchema =
-    ColorScheme.fromSeed(seedColor: const Color.fromARGB(0, 96, 0, 0));
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -49,31 +49,9 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         title: 'Empaire Film',
-        theme: ThemeData().copyWith(
-            colorScheme: KColorSchema,
-            scaffoldBackgroundColor: Colors.white,
-            appBarTheme: const AppBarTheme().copyWith(
-              backgroundColor: KColorSchema.onPrimaryContainer,
-              foregroundColor: KColorSchema.primaryContainer,
-            ),
-            cardTheme: const CardTheme().copyWith(
-              color: KColorSchema.secondaryContainer,
-              margin: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 18,
-              ),
-            ),
-            elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: KColorSchema.primaryContainer,
-              ),
-            ),
-            textTheme: ThemeData().textTheme.copyWith(
-                    titleLarge: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20,
-                  color: KColorSchema.onSecondaryContainer,
-                ))),
+        darkTheme: darkTheme,
+        theme: lightTheme,
+        themeMode: ThemeMode.system,
         home: const TabsPage(),
       ),
     );

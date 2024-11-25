@@ -12,7 +12,7 @@ class TagCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
-        color: const Color(0xffDBE3FF),
+        color: Theme.of(context).colorScheme.secondaryContainer,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

@@ -63,8 +63,9 @@ class FavoriteCard extends StatelessWidget {
       dragStartBehavior: DragStartBehavior.down,
       direction: DismissDirection.endToStart,
       background: Container(
-        color: Colors.red,
+        color: Theme.of(context).colorScheme.error,
         padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: Theme.of(context).cardTheme.margin,
         alignment: Alignment.centerRight,
         child: Icon(
           Iconsax.trash,
@@ -124,7 +125,11 @@ class FavoriteCard extends StatelessWidget {
                   children: [
                     Text(
                       data.title ?? "",
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).hintColor,
+                      ),
                     ),
                     Text(
                       data.overview ?? '',
