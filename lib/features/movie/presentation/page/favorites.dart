@@ -69,7 +69,7 @@ class FavoriteCard extends StatelessWidget {
         child: Icon(
           Iconsax.trash,
           size: 33,
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
         ),
       ),
       key: ValueKey(data.id),
