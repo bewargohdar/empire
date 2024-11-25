@@ -3,7 +3,7 @@ import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite
 import 'package:empaire_film/features/movie/presentation/page/favorites.dart';
 import 'package:empaire_film/features/movie/presentation/page/home.dart';
 import 'package:empaire_film/features/movie/presentation/widget/app_bar/app_bar.dart';
-import 'package:empaire_film/utils/constant/lang_keys.dart';
+import 'package:empaire_film/config/constant/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';

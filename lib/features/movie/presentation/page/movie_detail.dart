@@ -6,7 +6,7 @@ import 'package:empaire_film/features/movie/domain/entity/single_movie.dart';
 import 'package:empaire_film/features/movie/presentation/bloc/favorites/favorite_bloc.dart';
 import 'package:empaire_film/features/movie/presentation/widget/app_bar/stretchable_app_bar.dart';
 import 'package:empaire_film/features/movie/presentation/widget/movie/tag_card.dart';
-import 'package:empaire_film/utils/constant/lang_keys.dart';
+import 'package:empaire_film/config/constant/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';

@@ -1,7 +1,7 @@
 import 'package:empaire_film/features/movie/domain/entity/movie.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../../../../utils/local_database/data_base_helper.dart';
+import '../../../../../core/utils/local_database/data_base_helper.dart';
 
 class MovieLocalDataSource {
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;

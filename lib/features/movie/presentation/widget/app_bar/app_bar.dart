@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:empaire_film/features/movie/presentation/page/setting.dart';
-import 'package:empaire_film/utils/constant/lang_keys.dart';
+import 'package:empaire_film/config/constant/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
